@@ -1,6 +1,6 @@
 // Copyright 2022 NNTU-CS
 #include "alg.h"
-#include <cmath> 
+#include <cmath>
 
 double pown(double value, uint16_t n) {
     double result = 1.0;
@@ -23,10 +23,14 @@ double calcItem(double x, uint16_t n) {
 }
 
 double expn(double x, uint16_t count) {
-    double sum = 1.0; 
+    double sum = 1.0;
+    double term = 1.0;
+
     for (uint16_t i = 1; i < count; ++i) {
-        sum += calcItem(x, i);
+        term *= x / i;
+        sum += term;
     }
+
     return sum;
 }
 
@@ -35,22 +39,22 @@ double sinn(double x, uint16_t count) {
     for (uint16_t i = 0; i < count; ++i) {
         double term = calcItem(x, 2 * i + 1);
         if (i % 2 == 0) {
-            sum += term; 
+            sum += term;
         } else {
-            sum -= term; 
+            sum -= term;
         }
     }
     return sum;
 }
 
 double cosn(double x, uint16_t count) {
-    double sum = 1.0; 
+    double sum = 1.0;
     for (uint16_t i = 1; i < count; ++i) {
         double term = calcItem(x, 2 * i);
         if (i % 2 == 0) {
-            sum += term; 
+            sum += term;
         } else {
-            sum -= term; 
+            sum -= term;
         }
     }
     return sum;
